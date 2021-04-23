@@ -1,3 +1,8 @@
+// #####################################   BACKLOG   ###################################
+// - Criar um backend em node para o front
+// - Criar um backend em Java/Golang para conectar ao watson
+// - Criar skill no watson para responder no front
+
 (function() {
     var Message;
     Message = function(arg) {
@@ -16,40 +21,53 @@
         return this;
     };
     $(function() {
-        var getMessageText, sendMessage;
+        var getMessageText, submitToBot, postMessage;
         getMessageText = function() {
             var $message_input;
             $message_input = $('.message_input');
             return $message_input.val();
         };
-        sendMessage = function(origin, text) {
+        submitToBot = function(text) {
+            axios({
+                    method: 'POST',
+                    url: 'https://nunobot.free.beeceptor.com/ok',
+                    data: {}
+                })
+                .then(response => {
+                    return postMessage("BOT", response.data.message)
+                })
+                .catch(error => {
+                    console.log(error)
+                    return postMessage("BOT", "Tive um problema nos meus circuitos aqui, vamos recomeçar?")
+                })
+        };
+        postMessage = function(origin, text) {
             var $messages, message;
             if (text.trim() === '') {
                 return;
             }
             $('.message_input').val('');
             $messages = $('.messages');
+            origin = origin.toLowerCase();
             message = new Message({
                 text: text,
-                origin: origin.toLowerCase()
+                origin: origin
             });
             message.draw();
             return $messages.animate({ scrollTop: $messages.prop('scrollHeight') }, 300);
         };
         $('.send_message').click(function(e) {
-            return sendMessage('USER', getMessageText());
+            inputText = getMessageText()
+            postMessage("USER", inputText);
+            return submitToBot(inputText)
         });
         $('.message_input').keyup(function(e) {
             if (e.which === 13) {
-                return sendMessage('USER', getMessageText());
+                inputText = getMessageText()
+                postMessage("USER", inputText);
+                return submitToBot(inputText)
             }
         });
-        sendMessage('BOT', 'Hello Philip! :)');
-        setTimeout(function() {
-            return sendMessage('USER', 'Hi Sandy! How are you?');
-        }, 1000);
-        return setTimeout(function() {
-            return sendMessage('BOT', 'I\'m fine, thank you!');
-        }, 2000);
+        submitToBot("")
     });
 }.call(this));
