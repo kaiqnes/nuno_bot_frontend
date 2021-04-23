@@ -78,44 +78,44 @@ body {
     opacity: 0;
 }
 
-.messages .message.left .avatar {
+.messages .message.bot .avatar {
     background-color: #f5886e;
     float: left;
 }
 
-.messages .message.left .text_wrapper {
+.messages .message.bot .text_wrapper {
     background-color: #ffe6cb;
     margin-left: 20px;
 }
 
-.messages .message.left .text_wrapper::after,
-.messages .message.left .text_wrapper::before {
+.messages .message.bot .text_wrapper::after,
+.messages .message.bot .text_wrapper::before {
     right: 100%;
     border-right-color: #ffe6cb;
 }
 
-.messages .message.left .text {
+.messages .message.bot .text {
     color: #c48843;
 }
 
-.messages .message.right .avatar {
+.messages .message.user .avatar {
     background-color: #fdbf68;
     float: right;
 }
 
-.messages .message.right .text_wrapper {
+.messages .message.user .text_wrapper {
     background-color: #c7eafc;
     margin-right: 20px;
     float: right;
 }
 
-.messages .message.right .text_wrapper::after,
-.messages .message.right .text_wrapper::before {
+.messages .message.user .text_wrapper::after,
+.messages .message.user .text_wrapper::before {
     left: 100%;
     border-left-color: #c7eafc;
 }
 
-.messages .message.right .text {
+.messages .message.user .text {
     color: #45829b;
 }
 
