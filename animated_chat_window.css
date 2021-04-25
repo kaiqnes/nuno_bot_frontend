@@ -34,25 +34,10 @@ body {
     position: absolute;
 }
 
-.top_menu .buttons .button {
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    display: inline-block;
-    margin-right: 10px;
-    position: relative;
-}
-
-.top_menu .buttons .button.close {
-    background-color: #f5886e;
-}
-
-.top_menu .buttons .button.minimize {
-    background-color: #fdbf68;
-}
-
-.top_menu .buttons .button.maximize {
-    background-color: #a3d063;
+.top_menu .buttons .button.close img {
+    margin: -5px 0px 0px -1px;
+    height: 22px;
+    width: 22px;
 }
 
 .top_menu .title {
@@ -79,32 +64,32 @@ body {
 }
 
 .messages .message.bot .avatar {
-    background-color: #f5886e;
+    background-color: #ff5d5d;
     float: left;
 }
 
 .messages .message.bot .text_wrapper {
-    background-color: #ffe6cb;
+    background-color: #faa495;
     margin-left: 20px;
 }
 
 .messages .message.bot .text_wrapper::after,
 .messages .message.bot .text_wrapper::before {
     right: 100%;
-    border-right-color: #ffe6cb;
+    border-right-color: #faa495;
 }
 
 .messages .message.bot .text {
-    color: #c48843;
+    color: #383838;
 }
 
 .messages .message.user .avatar {
-    background-color: #fdbf68;
+    background-color: #46c1ff;
     float: right;
 }
 
 .messages .message.user .text_wrapper {
-    background-color: #c7eafc;
+    background-color: #99ddff;
     margin-right: 20px;
     float: right;
 }
@@ -112,11 +97,11 @@ body {
 .messages .message.user .text_wrapper::after,
 .messages .message.user .text_wrapper::before {
     left: 100%;
-    border-left-color: #c7eafc;
+    border-left-color: #99ddff;
 }
 
 .messages .message.user .text {
-    color: #45829b;
+    color: #383838;
 }
 
 .messages .message.appeared {
@@ -177,9 +162,9 @@ body {
 .bottom_wrapper .message_input_wrapper {
     display: inline-block;
     height: 50px;
-    border-radius: 25px;
+    border-radius: 10px;
     border: 1px solid #bcbdc0;
-    width: calc(100% - 160px);
+    width: calc(100% - 85px);
     position: relative;
     padding: 0 20px;
 }
@@ -195,12 +180,12 @@ body {
 }
 
 .bottom_wrapper .send_message {
-    width: 140px;
+    width: 70px;
     height: 50px;
     display: inline-block;
-    border-radius: 50px;
-    background-color: #a3d063;
-    border: 2px solid #a3d063;
+    border-radius: 10px;
+    background-color: #46c1ff;
+    border: 2px solid #46c1ff;
     color: #fff;
     cursor: pointer;
     transition: all 0.2s linear;
@@ -211,6 +196,12 @@ body {
 .bottom_wrapper .send_message:hover {
     color: #a3d063;
     background-color: #fff;
+}
+
+.bottom_wrapper .send_message .send_icon {
+    height: 30px;
+    width: 30px;
+    margin: 7px 20px;
 }
 
 .bottom_wrapper .send_message .text {
