@@ -21,7 +21,7 @@
         return this;
     };
     $(function() {
-        var getMessageText, submitToBot, postMessage;
+        var getMessageText, submitToBot, postMessage, resetConversation, isValidInput, cleanInput;
         getMessageText = function() {
             var $message_input;
             $message_input = $('.message_input');
@@ -30,7 +30,7 @@
         submitToBot = function(text) {
             axios({
                     method: 'POST',
-                    url: 'https://nunobot.free.beeceptor.com/ok',
+                    url: 'https://nunobot.free.beeceptor.com/message',
                     data: {}
                 })
                 .then(response => {
@@ -56,18 +56,45 @@
             message.draw();
             return $messages.animate({ scrollTop: $messages.prop('scrollHeight') }, 300);
         };
+        resetConversation = function() {
+            location.reload();
+        };
+        isValidInput = function(text) {
+            if (text.trim().length > 0) {
+                return cleanInput(text).length > 0;
+            }
+            return false;
+        };
+        cleanInput = function(text) {
+            var specialChars = "()[]\/{}|<>";
+
+            for (var i = 0; i < specialChars.length; i++) {
+                text = text.replace(new RegExp("\\" + specialChars[i], "gi"), "");
+            }
+
+            return text;
+        };
         $('.send_message').click(function(e) {
             inputText = getMessageText()
-            postMessage("USER", inputText);
-            return submitToBot(inputText)
+            if (isValidInput(inputText)) {
+                postMessage("USER", inputText);
+                return submitToBot(inputText)
+            }
+            return
         });
         $('.message_input').keyup(function(e) {
             if (e.which === 13) {
                 inputText = getMessageText()
-                postMessage("USER", inputText);
-                return submitToBot(inputText)
+                if (isValidInput(inputText)) {
+                    postMessage("USER", inputText);
+                    return submitToBot(inputText)
+                }
+                return
             }
         });
+        $('#close').click(function(e) {
+            resetConversation()
+        })
         submitToBot("")
     });
 }.call(this));
